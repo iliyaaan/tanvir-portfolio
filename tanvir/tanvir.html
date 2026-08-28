@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tanveer ul Haq Malik | Neon Portfolio</title>
+<title>Tanveer ul Haq Malik | Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,13 +13,14 @@
 
 <style>
 
-/* =====================================================
-   NEON VARIABLES
-===================================================== */
+/* =========================
+   DARK NEON THEME
+========================= */
 
 :root{
     --bg:#02030a;
-    --bg2:#060817;
+    --bg2:#070a18;
+    --card:rgba(9,13,31,.75);
 
     --text:#f5f7ff;
     --muted:#9299b5;
@@ -28,22 +29,29 @@
     --purple:#8b5cf6;
     --pink:#ff2bd6;
 
-    --card:rgba(8,12,30,.70);
-    --border:rgba(0,245,255,.20);
-
-    --shadow-cyan:
-        0 0 10px rgba(0,245,255,.35),
-        0 0 35px rgba(0,245,255,.12);
-
-    --shadow-purple:
-        0 0 10px rgba(139,92,246,.4),
-        0 0 35px rgba(139,92,246,.14);
+    --border:rgba(0,245,255,.22);
 }
 
 
-/* =====================================================
+/* =========================
+   LIGHT THEME
+========================= */
+
+body.light{
+    --bg:#f4f8ff;
+    --bg2:#ffffff;
+    --card:rgba(255,255,255,.82);
+
+    --text:#101425;
+    --muted:#596176;
+
+    --border:rgba(0,160,190,.25);
+}
+
+
+/* =========================
    RESET
-===================================================== */
+========================= */
 
 *{
     margin:0;
@@ -60,12 +68,10 @@ body{
     color:var(--text);
     font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
+    transition:
+        background .4s ease,
+        color .4s ease;
 }
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
 
 body::before{
     content:"";
@@ -75,22 +81,32 @@ body::before{
 
     background:
         radial-gradient(
-            circle at 15% 20%,
-            rgba(0,245,255,.10),
+            circle at 10% 15%,
+            rgba(0,245,255,.12),
             transparent 25%
         ),
         radial-gradient(
-            circle at 85% 20%,
+            circle at 90% 20%,
             rgba(139,92,246,.13),
             transparent 25%
         ),
         radial-gradient(
             circle at 50% 90%,
-            rgba(255,43,214,.08),
+            rgba(255,43,214,.10),
             transparent 25%
         );
+
+    pointer-events:none;
 }
 
+body.light::before{
+    opacity:.65;
+}
+
+
+/* =========================
+   GRID BACKGROUND
+========================= */
 
 body::after{
     content:"";
@@ -111,23 +127,19 @@ body::after{
 
     background-size:55px 55px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 90%
-        );
+    pointer-events:none;
 }
 
 
-/* =====================================================
+/* =========================
    SCAN LINE
-===================================================== */
+========================= */
 
 .scanline{
     position:fixed;
+    top:-10%;
     left:0;
-    right:0;
+    width:100%;
     height:2px;
 
     background:
@@ -140,8 +152,8 @@ body::after{
         );
 
     box-shadow:
-        0 0 20px var(--cyan),
-        0 0 40px var(--pink);
+        0 0 15px var(--cyan),
+        0 0 30px var(--pink);
 
     opacity:.25;
 
@@ -149,24 +161,25 @@ body::after{
 
     pointer-events:none;
 
-    animation:
-        scan 7s linear infinite;
+    animation:scan 7s linear infinite;
 }
 
 @keyframes scan{
-    0%{
-        top:-5%;
+
+    from{
+        top:-10%;
     }
 
-    100%{
-        top:105%;
+    to{
+        top:110%;
     }
+
 }
 
 
-/* =====================================================
+/* =========================
    CONTAINER
-===================================================== */
+========================= */
 
 .container{
     width:min(
@@ -177,9 +190,8 @@ body::after{
     margin:auto;
 }
 
-
 section{
-    padding:110px 0;
+    padding:105px 0;
 
     border-top:
         1px solid
@@ -187,9 +199,9 @@ section{
 }
 
 
-/* =====================================================
+/* =========================
    NAVBAR
-===================================================== */
+========================= */
 
 .nav{
     position:fixed;
@@ -197,8 +209,7 @@ section{
     top:16px;
     left:50%;
 
-    transform:
-        translateX(-50%);
+    transform:translateX(-50%);
 
     width:min(
         1120px,
@@ -208,67 +219,66 @@ section{
     z-index:100;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:15px;
 
     padding:12px 15px;
 
     border:
         1px solid
-        rgba(0,245,255,.25);
+        var(--border);
 
-    border-radius:17px;
+    border-radius:18px;
 
     background:
         rgba(2,3,10,.72);
 
-    backdrop-filter:
-        blur(20px);
+    backdrop-filter:blur(20px);
 
     box-shadow:
         0 0 20px
         rgba(0,245,255,.08);
 }
 
+body.light .nav{
+    background:
+        rgba(255,255,255,.78);
+}
+
 
 .logo{
     font-family:Orbitron,sans-serif;
 
-    font-weight:800;
-
     font-size:22px;
+    font-weight:800;
 
     color:var(--cyan);
 
     text-shadow:
         0 0 8px var(--cyan),
-        0 0 25px rgba(0,245,255,.5);
+        0 0 25px rgba(0,245,255,.45);
 }
 
 
 .nav-links{
     display:flex;
-    align-items:center;
-    gap:3px;
+    gap:4px;
 }
-
 
 .nav-links a{
     color:var(--muted);
 
-    font-size:10px;
+    text-decoration:none;
 
-    padding:9px 9px;
+    font-size:10px;
+    font-weight:600;
+
+    padding:9px;
 
     border-radius:8px;
 
     transition:.25s;
 }
-
 
 .nav-links a:hover{
     color:var(--cyan);
@@ -281,11 +291,13 @@ section{
 }
 
 
-/* THEME BUTTON */
+/* =========================
+   THEME BUTTON
+========================= */
 
-.theme-toggle{
-    width:40px;
-    height:40px;
+.theme-btn{
+    width:42px;
+    height:42px;
 
     border-radius:50%;
 
@@ -294,66 +306,68 @@ section{
         var(--cyan);
 
     background:
-        rgba(0,245,255,.06);
+        rgba(0,245,255,.07);
 
     color:var(--cyan);
 
-    font-size:18px;
-
     cursor:pointer;
+
+    font-size:19px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.35s;
 
     box-shadow:
         0 0 10px
-        rgba(0,245,255,.25);
-
-    transition:.3s;
+        rgba(0,245,255,.22);
 }
 
-
-.theme-toggle:hover{
+.theme-btn:hover{
     transform:
         rotate(180deg)
         scale(1.08);
 
     box-shadow:
-        0 0 10px var(--cyan),
-        0 0 30px var(--cyan);
+        0 0 12px var(--cyan),
+        0 0 30px rgba(0,245,255,.35);
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE MENU
+========================= */
 
-.menu{
+.menu-btn{
     display:none;
 
-    border:0;
-
     background:none;
+    border:0;
 
     color:var(--cyan);
 
-    font-size:25px;
+    font-size:24px;
 
     cursor:pointer;
 }
 
 
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero{
     min-height:100vh;
 
-    padding:
-        145px 0
-        70px;
-
     display:flex;
-
     align-items:center;
-}
 
+    padding:
+        140px 0
+        70px;
+}
 
 .hero-grid{
     display:grid;
@@ -362,7 +376,7 @@ section{
         1.05fr
         .95fr;
 
-    gap:55px;
+    gap:50px;
 
     align-items:center;
 }
@@ -394,11 +408,10 @@ h1{
             6rem
         );
 
-    line-height:.92;
+    line-height:.94;
 
     letter-spacing:-.06em;
 }
-
 
 h1 span{
     display:block;
@@ -415,7 +428,7 @@ h1 span{
 
 
 .tagline{
-    margin-top:27px;
+    margin-top:25px;
 
     font-size:
         clamp(
@@ -424,11 +437,8 @@ h1 span{
             1.3rem
         );
 
-    color:var(--text);
-
-    line-height:1.5;
+    font-weight:600;
 }
-
 
 .description{
     max-width:650px;
@@ -455,8 +465,7 @@ h1 span{
 .btn{
     display:inline-block;
 
-    padding:
-        13px 19px;
+    padding:14px 20px;
 
     border:
         1px solid
@@ -464,8 +473,11 @@ h1 span{
 
     border-radius:10px;
 
-    font-size:12px;
+    text-decoration:none;
 
+    color:var(--text);
+
+    font-size:12px;
     font-weight:700;
 
     transition:.3s;
@@ -475,46 +487,20 @@ h1 span{
     overflow:hidden;
 }
 
-
-.btn::before{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.15),
-            transparent
-        );
-
-    transform:
-        translateX(-120%);
-
-    transition:.5s;
-}
-
-
-.btn:hover::before{
-    transform:
-        translateX(120%);
-}
-
-
 .btn:hover{
-    transform:
-        translateY(-4px);
+    transform:translateY(-4px);
+
+    color:var(--cyan);
+
+    border-color:var(--cyan);
 
     box-shadow:
         0 0 10px var(--cyan),
-        0 0 30px rgba(0,245,255,.25);
+        0 0 30px rgba(0,245,255,.2);
 }
 
 
-.btn.neon{
+.btn.primary{
     color:#001014;
 
     background:var(--cyan);
@@ -526,13 +512,17 @@ h1 span{
         0 0 30px rgba(0,245,255,.25);
 }
 
+.btn.primary:hover{
+    color:#001014;
+}
 
-/* =====================================================
+
+/* =========================
    3D PHOTO
-===================================================== */
+========================= */
 
 .visual{
-    height:590px;
+    height:570px;
 
     display:grid;
 
@@ -544,113 +534,9 @@ h1 span{
 }
 
 
-/* ROTATING RINGS */
-
-.ring{
-    position:absolute;
-
-    width:470px;
-    height:470px;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(0,245,255,.28);
-
-    box-shadow:
-        0 0 25px
-        rgba(0,245,255,.06);
-
-    transform:
-        rotateX(68deg)
-        rotateZ(20deg);
-
-    animation:
-        ringSpin
-        13s linear infinite;
-}
-
-
-.ring::before{
-    content:"";
-
-    position:absolute;
-
-    width:11px;
-    height:11px;
-
-    border-radius:50%;
-
-    background:var(--cyan);
-
-    box-shadow:
-        0 0 10px var(--cyan),
-        0 0 25px var(--cyan);
-
-    top:6%;
-    left:17%;
-}
-
-
-.ring2{
-    width:390px;
-    height:390px;
-
-    border-color:
-        rgba(255,43,214,.25);
-
-    transform:
-        rotateX(68deg)
-        rotateZ(-20deg);
-
-    animation:
-        ringSpin2
-        10s linear infinite;
-}
-
-
-.ring2::before{
-    background:var(--pink);
-
-    box-shadow:
-        0 0 10px var(--pink),
-        0 0 25px var(--pink);
-
-    top:auto;
-    bottom:10%;
-    left:auto;
-    right:10%;
-}
-
-
-@keyframes ringSpin{
-
-    to{
-        transform:
-            rotateX(68deg)
-            rotateZ(380deg);
-    }
-
-}
-
-
-@keyframes ringSpin2{
-
-    to{
-        transform:
-            rotateX(68deg)
-            rotateZ(-380deg);
-    }
-
-}
-
-
-/* PHOTO FRAME */
-
 .photo-wrap{
     width:min(
-        380px,
+        375px,
         80vw
     );
 
@@ -662,7 +548,7 @@ h1 span{
 
     z-index:5;
 
-    border-radius:27px;
+    border-radius:28px;
 
     background:
         linear-gradient(
@@ -673,12 +559,10 @@ h1 span{
             var(--cyan)
         );
 
-    background-size:
-        300% 300%;
+    background-size:300% 300%;
 
     animation:
-        gradientMove
-        5s ease infinite;
+        gradient 5s ease infinite;
 
     box-shadow:
         0 0 15px var(--cyan),
@@ -691,11 +575,10 @@ h1 span{
         transform .12s ease;
 }
 
-
-@keyframes gradientMove{
+@keyframes gradient{
 
     0%{
-        background-position:0% 50%;
+        background-position:0 50%;
     }
 
     50%{
@@ -703,31 +586,11 @@ h1 span{
     }
 
     100%{
-        background-position:0% 50%;
+        background-position:0 50%;
     }
 
 }
 
-
-.photo{
-    display:block;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:21px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    background:#080a13;
-}
-
-
-/* PHOTO GLOW */
 
 .photo-wrap::before{
     content:"";
@@ -754,38 +617,151 @@ h1 span{
 }
 
 
-/* FLOATING CUBES */
+.photo{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:21px;
+
+    background:#080a13;
+}
+
+
+/* =========================
+   RINGS
+========================= */
+
+.ring{
+    position:absolute;
+
+    width:470px;
+    height:470px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(0,245,255,.28);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,245,255,.08);
+
+    transform:
+        rotateX(68deg)
+        rotateZ(20deg);
+
+    animation:
+        ring1
+        13s linear infinite;
+}
+
+.ring::before{
+    content:"";
+
+    position:absolute;
+
+    width:11px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px var(--cyan);
+
+    top:6%;
+    left:17%;
+}
+
+
+.ring.two{
+    width:390px;
+    height:390px;
+
+    border-color:
+        rgba(255,43,214,.25);
+
+    transform:
+        rotateX(68deg)
+        rotateZ(-20deg);
+
+    animation:
+        ring2
+        10s linear infinite;
+}
+
+.ring.two::before{
+    background:var(--pink);
+
+    box-shadow:
+        0 0 10px var(--pink),
+        0 0 25px var(--pink);
+
+    top:auto;
+    bottom:10%;
+    left:auto;
+    right:10%;
+}
+
+
+@keyframes ring1{
+
+    to{
+        transform:
+            rotateX(68deg)
+            rotateZ(380deg);
+    }
+
+}
+
+@keyframes ring2{
+
+    to{
+        transform:
+            rotateX(68deg)
+            rotateZ(-380deg);
+    }
+
+}
+
+
+/* =========================
+   FLOATING CUBES
+========================= */
 
 .cube{
     position:absolute;
 
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
 
     border:
         1px solid
         var(--cyan);
 
     box-shadow:
-        0 0 15px
-        var(--cyan);
+        0 0 15px var(--cyan);
 
-    transform:
-        rotate(45deg);
+    transform:rotate(45deg);
 
     animation:
-        cubeFloat
+        floating
         5s ease-in-out infinite;
 }
 
-
-.cube1{
+.cube.one{
     top:10%;
     right:3%;
 }
 
-
-.cube2{
+.cube.two{
     bottom:15%;
     left:2%;
 
@@ -797,8 +773,7 @@ h1 span{
     animation-delay:-2s;
 }
 
-
-.cube3{
+.cube.three{
     top:30%;
     left:5%;
 
@@ -810,8 +785,7 @@ h1 span{
     animation-delay:-3s;
 }
 
-
-@keyframes cubeFloat{
+@keyframes floating{
 
     50%{
         transform:
@@ -822,9 +796,9 @@ h1 span{
 }
 
 
-/* =====================================================
+/* =========================
    SECTION HEAD
-===================================================== */
+========================= */
 
 .section-head{
     display:flex;
@@ -837,14 +811,18 @@ h1 span{
 }
 
 
-.section-number{
-    font-family:Orbitron,sans-serif;
+.section-line{
+    width:45px;
+    height:2px;
 
-    color:var(--cyan);
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--pink)
+        );
 
-    font-size:11px;
-
-    text-shadow:
+    box-shadow:
         0 0 10px var(--cyan);
 }
 
@@ -856,16 +834,16 @@ h2{
         clamp(
             1.9rem,
             4vw,
-            3.3rem
+            3.2rem
         );
 
     letter-spacing:-.04em;
 }
 
 
-/* =====================================================
+/* =========================
    ABOUT
-===================================================== */
+========================= */
 
 .about-grid{
     display:grid;
@@ -885,7 +863,7 @@ h2{
         clamp(
             1.5rem,
             3vw,
-            2.6rem
+            2.5rem
         );
 
     line-height:1.3;
@@ -894,7 +872,7 @@ h2{
 
     text-shadow:
         0 0 12px
-        rgba(0,245,255,.22);
+        rgba(0,245,255,.2);
 }
 
 
@@ -905,9 +883,9 @@ h2{
 }
 
 
-/* =====================================================
+/* =========================
    CARDS
-===================================================== */
+========================= */
 
 .cards{
     display:grid;
@@ -921,9 +899,9 @@ h2{
 
 
 .card{
-    min-height:190px;
+    padding:30px;
 
-    padding:28px;
+    min-height:190px;
 
     position:relative;
 
@@ -931,42 +909,27 @@ h2{
 
     border:
         1px solid
-        rgba(0,245,255,.17);
+        rgba(0,245,255,.16);
 
     border-radius:20px;
 
-    background:
-        var(--card);
+    background:var(--card);
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter:blur(16px);
 
     transform-style:preserve-3d;
 
     transition:
         transform .15s ease,
-        border-color .3s,
-        box-shadow .3s;
+        .3s;
 }
 
+.card:hover{
+    border-color:var(--cyan);
 
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    right:-70px;
-    top:-70px;
-
-    border-radius:50%;
-
-    background:
-        rgba(0,245,255,.08);
-
-    filter:blur(5px);
+    box-shadow:
+        0 0 18px
+        rgba(0,245,255,.16);
 }
 
 
@@ -994,49 +957,13 @@ h2{
 }
 
 
-.card:hover{
-    border-color:
-        rgba(0,245,255,.55);
-
-    box-shadow:
-        0 0 15px
-        rgba(0,245,255,.15),
-        0 20px 55px
-        rgba(0,0,0,.5);
-}
-
-
-.card-content{
-    position:relative;
-
-    z-index:2;
-
-    transform:
-        translateZ(25px);
-}
-
-
-.card-number{
-    color:var(--cyan);
-
-    font-family:Orbitron,sans-serif;
-
-    font-size:10px;
-
-    text-shadow:
-        0 0 10px var(--cyan);
-}
-
-
 .card h3{
     font-family:Orbitron,sans-serif;
 
     font-size:19px;
 
-    line-height:1.4;
-
     margin:
-        9px 0;
+        10px 0;
 }
 
 
@@ -1044,12 +971,14 @@ h2{
     color:var(--muted);
 
     font-size:13px;
+
+    line-height:1.7;
 }
 
 
-/* =====================================================
+/* =========================
    FEATURE
-===================================================== */
+========================= */
 
 .feature{
     padding:45px;
@@ -1068,38 +997,18 @@ h2{
             rgba(255,43,214,.045)
         );
 
-    position:relative;
-
-    overflow:hidden;
-
     transform-style:preserve-3d;
 
     transition:
         transform .15s ease;
-
-    box-shadow:
-        inset 0 0 35px
-        rgba(139,92,246,.04);
 }
 
+.feature:hover{
+    border-color:var(--purple);
 
-.feature::before{
-    content:"";
-
-    position:absolute;
-
-    top:-100px;
-    right:-100px;
-
-    width:300px;
-    height:300px;
-
-    border-radius:50%;
-
-    background:
+    box-shadow:
+        0 0 30px
         rgba(139,92,246,.12);
-
-    filter:blur(60px);
 }
 
 
@@ -1125,20 +1034,13 @@ h2{
         );
 
     margin:
-        10px 0
-        14px;
-
-    color:var(--text);
-
-    text-shadow:
-        0 0 15px
-        rgba(139,92,246,.35);
+        10px 0 15px;
 }
 
 
-/* =====================================================
+/* =========================
    TIMELINE
-===================================================== */
+========================= */
 
 .timeline{
     max-width:900px;
@@ -1148,14 +1050,12 @@ h2{
     position:relative;
 }
 
-
 .timeline::before{
     content:"";
 
     position:absolute;
 
-    left:22px;
-
+    left:8px;
     top:0;
     bottom:0;
 
@@ -1170,8 +1070,7 @@ h2{
         );
 
     box-shadow:
-        0 0 10px
-        rgba(0,245,255,.5);
+        0 0 10px var(--cyan);
 }
 
 
@@ -1179,24 +1078,23 @@ h2{
     position:relative;
 
     padding:
-        0 0 48px
-        70px;
+        0 0 45px
+        45px;
 }
 
 
 .timeline-dot{
     position:absolute;
 
-    left:13px;
+    left:0;
     top:2px;
 
-    width:19px;
-    height:19px;
+    width:17px;
+    height:17px;
 
     border-radius:50%;
 
-    background:
-        var(--bg);
+    background:var(--bg);
 
     border:
         2px solid
@@ -1208,22 +1106,12 @@ h2{
 }
 
 
-.timeline-number{
-    color:var(--cyan);
-
-    font-family:Orbitron,sans-serif;
-
-    font-size:9px;
-}
-
-
 .timeline-item h3{
     font-family:Orbitron,sans-serif;
 
-    margin:
-        7px 0;
-
     font-size:20px;
+
+    margin-bottom:7px;
 }
 
 
@@ -1232,9 +1120,9 @@ h2{
 }
 
 
-/* =====================================================
+/* =========================
    CONTACT
-===================================================== */
+========================= */
 
 .contact-grid{
     display:grid;
@@ -1254,7 +1142,7 @@ h2{
 
     gap:17px;
 
-    padding:21px;
+    padding:22px;
 
     border:
         1px solid
@@ -1262,19 +1150,20 @@ h2{
 
     border-radius:17px;
 
-    background:
-        var(--card);
+    background:var(--card);
+
+    color:var(--text);
+
+    text-decoration:none;
 
     transition:.3s;
 }
 
 
 .contact:hover{
-    transform:
-        translateY(-5px);
+    transform:translateY(-5px);
 
-    border-color:
-        var(--cyan);
+    border-color:var(--cyan);
 
     box-shadow:
         0 0 15px
@@ -1314,22 +1203,21 @@ h2{
 }
 
 
-/* =====================================================
+/* =========================
    FOOTER
-===================================================== */
+========================= */
 
 footer{
     padding:45px 0;
 
     border-top:
         1px solid
-        rgba(0,245,255,.10);
+        rgba(0,245,255,.1);
 
-    color:#666b80;
+    color:var(--muted);
 
     font-size:11px;
 }
-
 
 .footer{
     display:flex;
@@ -1340,21 +1228,19 @@ footer{
 }
 
 
-/* =====================================================
+/* =========================
    REVEAL
-===================================================== */
+========================= */
 
 .reveal{
     opacity:0;
 
-    transform:
-        translateY(30px);
+    transform:translateY(30px);
 
     transition:
         opacity .8s ease,
         transform .8s ease;
 }
-
 
 .reveal.show{
     opacity:1;
@@ -1363,9 +1249,9 @@ footer{
 }
 
 
-/* =====================================================
+/* =========================
    PARTICLES
-===================================================== */
+========================= */
 
 .particle{
     position:fixed;
@@ -1380,20 +1266,19 @@ footer{
     box-shadow:
         0 0 8px var(--cyan);
 
-    opacity:.5;
+    opacity:.45;
 
     pointer-events:none;
 
     z-index:-1;
 
     animation:
-        particleFloat
+        particle
         6s ease-in-out
         infinite alternate;
 }
 
-
-@keyframes particleFloat{
+@keyframes particle{
 
     to{
         transform:
@@ -1408,9 +1293,9 @@ footer{
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media(max-width:850px){
 
@@ -1418,11 +1303,9 @@ footer{
         display:none;
     }
 
-
-    .menu{
+    .menu-btn{
         display:block;
     }
-
 
     .nav.open .nav-links{
 
@@ -1430,72 +1313,64 @@ footer{
 
         position:absolute;
 
+        top:67px;
+
         left:0;
         right:0;
-
-        top:65px;
 
         flex-direction:column;
 
         padding:10px;
 
+        background:
+            rgba(2,3,10,.95);
+
         border:
             1px solid
-            rgba(0,245,255,.2);
+            var(--border);
 
         border-radius:15px;
-
-        background:
-            rgba(2,3,10,.94);
 
         backdrop-filter:blur(20px);
     }
 
+    body.light .nav.open .nav-links{
+        background:
+            rgba(255,255,255,.96);
+    }
 
     .nav.open .nav-links a{
         width:100%;
-
         text-align:center;
-
         padding:12px;
     }
-
 
     .hero{
         padding-top:125px;
     }
 
-
     .hero-grid{
         grid-template-columns:1fr;
-
-        gap:20px;
     }
-
 
     .visual{
         order:-1;
-
-        height:470px;
+        height:460px;
     }
-
 
     .ring{
         width:350px;
         height:350px;
     }
 
-
-    .ring2{
+    .ring.two{
         width:290px;
         height:290px;
     }
 
-
     .photo-wrap{
         width:300px;
     }
-
 
     .about-grid,
     .cards,
@@ -1503,11 +1378,9 @@ footer{
         grid-template-columns:1fr;
     }
 
-
     .feature{
         padding:30px 24px;
     }
-
 
     .footer{
         flex-direction:column;
@@ -1516,38 +1389,29 @@ footer{
 }
 
 
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
 @media(max-width:450px){
 
     h1{
         font-size:3rem;
     }
 
-
     .visual{
-        height:400px;
+        height:410px;
     }
-
 
     .ring{
         width:290px;
         height:290px;
     }
 
-
-    .ring2{
+    .ring.two{
         width:240px;
         height:240px;
     }
 
-
     .photo-wrap{
         width:260px;
     }
-
 
     section{
         padding:80px 0;
@@ -1556,28 +1420,17 @@ footer{
 }
 
 
-/* =====================================================
+/* =========================
    REDUCED MOTION
-===================================================== */
+========================= */
 
 @media(prefers-reduced-motion:reduce){
 
     *,
     *::before,
     *::after{
-
         animation:none!important;
-
         transition:none!important;
-
-        scroll-behavior:auto!important;
-    }
-
-
-    .reveal{
-        opacity:1;
-
-        transform:none;
     }
 
 }
@@ -1589,124 +1442,84 @@ footer{
 <body>
 
 
-<!-- SCAN LINE -->
-
 <div class="scanline"></div>
 
 
-<!-- =====================================================
+<!-- =========================
      NAVBAR
-===================================================== -->
+========================= -->
 
 <nav class="nav" id="nav">
 
-
-    <a
-        href="#home"
-        class="logo"
-    >
+    <a href="#home" class="logo">
         TANVEER UL HAQ MALIK.
     </a>
 
-
     <div class="nav-links">
 
-        <a href="#home">
-            HOME
-        </a>
-
-        <a href="#about">
-            ABOUT
-        </a>
-
-        <a href="#education">
-            EDUCATION
-        </a>
-
-        <a href="#experience">
-            EXPERIENCE
-        </a>
-
-        <a href="#business">
-            BUSINESS
-        </a>
-
-        <a href="#journey">
-            JOURNEY
-        </a>
-
-        <a href="#contact">
-            CONTACT
-        </a>
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#business">BUSINESS</a>
+        <a href="#contact">CONTACT</a>
 
     </div>
 
 
-    <!-- THEME -->
+    <!-- LIGHT / DARK -->
 
     <button
-        class="theme-toggle"
-        id="themeToggle"
-        title="Light / Dark"
+        class="theme-btn"
+        id="themeBtn"
+        title="Light / Dark Mode"
     >
         ☀
     </button>
 
 
-    <!-- MOBILE -->
-
     <button
-        class="menu"
-        id="menu"
+        class="menu-btn"
+        id="menuBtn"
     >
         ☰
     </button>
-
 
 </nav>
 
 
 
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
-<section
-    class="hero"
-    id="home"
->
-
+<section class="hero" id="home">
 
 <div class="container hero-grid">
 
 
     <div class="reveal">
 
-
         <div class="kicker">
-
-            DIGITAL PORTFOLIO // 2026
-
+            DIGITAL PORTFOLIO
         </div>
 
 
         <h1>
-
             Tanveer
 
             <span>
                 ul Haq Malik
             </span>
-
         </h1>
 
 
         <div class="tagline">
 
             BBA-H Student
-            |
+            ·
             Entrepreneur
-            |
+            ·
             Founder
 
         </div>
@@ -1714,25 +1527,22 @@ footer{
 
         <p class="description">
 
-            I am a BBA-H student at Iqra University
-            with an academic background in business
-            education, professional experience at FBR,
-            CIT certification, and an entrepreneurial
-            journey as Founder of Saeed Law Associates.
+            BBA-H student at Iqra University with
+            professional experience at FBR,
+            CIT certification, and entrepreneurial
+            experience as Founder of Saeed Law Associates.
 
         </p>
 
 
         <div class="buttons">
 
-
             <a
-                href="#journey"
-                class="btn neon"
+                href="#about"
+                class="btn primary"
             >
-                EXPLORE JOURNEY →
+                EXPLORE PORTFOLIO →
             </a>
-
 
             <a
                 href="#contact"
@@ -1741,42 +1551,36 @@ footer{
                 CONTACT ME
             </a>
 
-
         </div>
-
 
     </div>
 
 
 
-    <!-- 3D VISUAL -->
+    <!-- PHOTO -->
 
     <div class="visual reveal">
 
 
         <div class="ring"></div>
 
-        <div class="ring ring2"></div>
+        <div class="ring two"></div>
 
 
-        <div class="cube cube1"></div>
+        <div class="cube one"></div>
 
-        <div class="cube cube2"></div>
+        <div class="cube two"></div>
 
-        <div class="cube cube3"></div>
-
-
-        <div class="photo-wrap tilt-photo">
+        <div class="cube three"></div>
 
 
-            <!-- YOUR PHOTO -->
+        <div class="photo-wrap" id="photo">
 
             <img
-                src="./tanvir-img.jpeg.jpeg"
+                src="tanvir-img.jpeg.jpeg"
                 alt="Tanveer ul Haq Malik"
                 class="photo"
             >
-
 
         </div>
 
@@ -1790,20 +1594,17 @@ footer{
 
 
 
-<!-- =====================================================
+<!-- =========================
      ABOUT
-===================================================== -->
+========================= -->
 
 <section id="about">
 
 <div class="container">
 
-
     <div class="section-head reveal">
 
-        <span class="section-number">
-            01
-        </span>
+        <div class="section-line"></div>
 
         <h2>
             ABOUT ME
@@ -1835,9 +1636,7 @@ footer{
 
             </p>
 
-
             <br>
-
 
             <p>
 
@@ -1848,26 +1647,21 @@ footer{
 
             </p>
 
-
             <br>
-
 
             <p>
 
-                I also completed a CIT
-                (Certificate in Information Technology)
-                course from Delhi School.
+                I also completed a complete
+                CIT course from Delhi School.
 
             </p>
 
-
             <br>
-
 
             <p>
 
-                Professionally, I have one year
-                of experience at FBR and I am also
+                I have one year of professional
+                experience at FBR and I am also
                 the Founder of Saeed Law Associates.
 
             </p>
@@ -1883,20 +1677,17 @@ footer{
 
 
 
-<!-- =====================================================
+<!-- =========================
      EDUCATION
-===================================================== -->
+========================= -->
 
 <section id="education">
 
 <div class="container">
 
-
     <div class="section-head reveal">
 
-        <span class="section-number">
-            02
-        </span>
+        <div class="section-line"></div>
 
         <h2>
             EDUCATION
@@ -1908,241 +1699,10 @@ footer{
     <div class="cards">
 
 
-        <div class="card tilt reveal">
-
-            <div class="card-content">
-
-                <div class="card-number">
-                    // 01
-                </div>
-
-                <h3>
-                    MATRICULATION
-                </h3>
-
-                <p>
-                    Bahria Foundation
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="card tilt reveal">
-
-            <div class="card-content">
-
-                <div class="card-number">
-                    // 02
-                </div>
-
-                <h3>
-                    INTERMEDIATE
-                </h3>
-
-                <p>
-                    Bahria College Karsaz
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="card tilt reveal">
-
-            <div class="card-content">
-
-                <div class="card-number">
-                    // 03
-                </div>
-
-                <h3>
-                    CIT
-                </h3>
-
-                <p>
-                    Certificate in Information Technology
-                    — Delhi School
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="card tilt reveal">
-
-            <div class="card-content">
-
-                <div class="card-number">
-                    // 04
-                </div>
-
-                <h3>
-                    BBA-H
-                </h3>
-
-                <p>
-                    Iqra University
-                    — Currently Pursuing
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     EXPERIENCE
-===================================================== -->
-
-<section id="experience">
-
-<div class="container">
-
-
-    <div class="section-head reveal">
-
-        <span class="section-number">
-            03
-        </span>
-
-        <h2>
-            EXPERIENCE
-        </h2>
-
-    </div>
-
-
-    <div class="feature tilt reveal">
-
-
-        <div class="feature-label">
-            PROFESSIONAL EXPERIENCE
-        </div>
-
-
-        <h3>
-            FBR
-        </h3>
-
-
-        <p class="muted">
-
-            One year of professional experience
-            at the Federal Board of Revenue.
-
-        </p>
-
-
-    </div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     BUSINESS
-===================================================== -->
-
-<section id="business">
-
-<div class="container">
-
-
-    <div class="section-head reveal">
-
-        <span class="section-number">
-            04
-        </span>
-
-        <h2>
-            ENTREPRENEURSHIP
-        </h2>
-
-    </div>
-
-
-    <div class="feature tilt reveal">
-
-
-        <div class="feature-label">
-            FOUNDER
-        </div>
-
-
-        <h3>
-            Saeed Law Associates
-        </h3>
-
-
-        <p class="muted">
-
-            Founder of Saeed Law Associates,
-            building an entrepreneurial path
-            alongside academic and professional
-            development.
-
-        </p>
-
-
-    </div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     JOURNEY
-===================================================== -->
-
-<section id="journey">
-
-<div class="container">
-
-
-    <div class="section-head reveal">
-
-        <span class="section-number">
-            05
-        </span>
-
-        <h2>
-            MY JOURNEY
-        </h2>
-
-    </div>
-
-
-    <div class="timeline">
-
-
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_01
-            </span>
+        <div class="card reveal">
 
             <h3>
-                MATRICULATION
+                Matriculation
             </h3>
 
             <p>
@@ -2152,16 +1712,10 @@ footer{
         </div>
 
 
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_02
-            </span>
+        <div class="card reveal">
 
             <h3>
-                INTERMEDIATE
+                Intermediate
             </h3>
 
             <p>
@@ -2171,81 +1725,31 @@ footer{
         </div>
 
 
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_03
-            </span>
+        <div class="card reveal">
 
             <h3>
                 CIT
             </h3>
 
             <p>
-                Delhi School —
-                Certificate in Information Technology
+                Complete Certificate in
+                Information Technology
+                from Delhi School.
             </p>
 
         </div>
 
 
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_04
-            </span>
+        <div class="card reveal">
 
             <h3>
                 BBA-H
             </h3>
 
             <p>
-                Iqra University —
+                Iqra University
+                <br>
                 Currently Pursuing
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_05
-            </span>
-
-            <h3>
-                FBR
-            </h3>
-
-            <p>
-                Federal Board of Revenue —
-                1 Year Experience
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <span class="timeline-number">
-                STEP_06
-            </span>
-
-            <h3>
-                ENTREPRENEURSHIP
-            </h3>
-
-            <p>
-                Founder —
-                Saeed Law Associates
             </p>
 
         </div>
@@ -2253,6 +1757,49 @@ footer{
 
     </div>
 
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     EXPERIENCE
+========================= -->
+
+<section id="experience">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            EXPERIENCE
+        </h2>
+
+    </div>
+
+
+    <div class="feature reveal">
+
+        <div class="feature-label">
+            PROFESSIONAL EXPERIENCE
+        </div>
+
+        <h3>
+            FBR
+        </h3>
+
+        <p class="muted">
+
+            One year of professional experience
+            at the Federal Board of Revenue.
+
+        </p>
+
+    </div>
 
 </div>
 
@@ -2260,20 +1807,62 @@ footer{
 
 
 
-<!-- =====================================================
+<!-- =========================
+     BUSINESS
+========================= -->
+
+<section id="business">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            BUSINESS
+        </h2>
+
+    </div>
+
+
+    <div class="feature reveal">
+
+        <div class="feature-label">
+            FOUNDER
+        </div>
+
+        <h3>
+            Saeed Law Associates
+        </h3>
+
+        <p class="muted">
+
+            Founder of Saeed Law Associates,
+            combining professional experience,
+            business education and entrepreneurship.
+
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
      CONTACT
-===================================================== -->
+========================= -->
 
 <section id="contact">
 
 <div class="container">
 
-
     <div class="section-head reveal">
 
-        <span class="section-number">
-            06
-        </span>
+        <div class="section-line"></div>
 
         <h2>
             CONTACT
@@ -2284,8 +1873,9 @@ footer{
 
     <p class="muted reveal">
 
-        Let's connect and discuss opportunities,
-        professional collaboration and future ideas.
+        Feel free to connect with me for
+        professional opportunities,
+        collaboration and business inquiries.
 
     </p>
 
@@ -2296,11 +1886,11 @@ footer{
     <div class="contact-grid">
 
 
-        <!-- PERSONAL -->
+        <!-- PHONE -->
 
         <a
             href="tel:+923202594657"
-            class="contact tilt reveal"
+            class="contact reveal"
         >
 
             <span class="contact-icon">
@@ -2327,7 +1917,7 @@ footer{
         <a
             href="https://wa.me/923122327893"
             target="_blank"
-            class="contact tilt reveal"
+            class="contact reveal"
         >
 
             <span class="contact-icon">
@@ -2353,7 +1943,7 @@ footer{
 
         <a
             href="mailto:tanveer.65721@iqra.edu.pk"
-            class="contact tilt reveal"
+            class="contact reveal"
         >
 
             <span class="contact-icon">
@@ -2400,21 +1990,19 @@ footer{
 
     </div>
 
-
 </div>
 
 </section>
 
 
 
-<!-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== -->
+========================= -->
 
 <footer>
 
 <div class="container footer">
-
 
     <div>
 
@@ -2422,11 +2010,10 @@ footer{
             Tanveer ul Haq Malik
         </strong>
 
-        <br>
+        <br><br>
 
-        BBA-H Student |
-        Entrepreneur |
-        Founder — Saeed Law Associates
+        BBA-H Student · Entrepreneur ·
+        Founder of Saeed Law Associates
 
     </div>
 
@@ -2437,32 +2024,26 @@ footer{
 
     </div>
 
-
 </div>
 
 </footer>
 
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-
-/* =====================================================
+/* =========================
    MOBILE MENU
-===================================================== */
+========================= */
 
 const nav =
     document.getElementById("nav");
 
-const menu =
-    document.getElementById("menu");
+const menuBtn =
+    document.getElementById("menuBtn");
 
 
-menu.addEventListener(
+menuBtn.addEventListener(
     "click",
     () => {
 
@@ -2472,64 +2053,50 @@ menu.addEventListener(
 );
 
 
-/* CLOSE MOBILE MENU */
-
 document
-    .querySelectorAll(".nav-links a")
-    .forEach(link => {
+.querySelectorAll(".nav-links a")
+.forEach(link => {
 
-        link.addEventListener(
-            "click",
-            () => {
+    link.addEventListener(
+        "click",
+        () => {
 
-                nav.classList.remove("open");
+            nav.classList.remove("open");
 
-            }
-        );
-
-    });
-
-
-
-/* =====================================================
-   THEME BUTTON
-===================================================== */
-
-const themeToggle =
-    document.getElementById(
-        "themeToggle"
+        }
     );
 
+});
 
-/*
-   Neon dark mode is the main design.
-   Light mode keeps the same neon accents.
-*/
+
+/* =========================
+   LIGHT / DARK MODE
+========================= */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
 
 const savedTheme =
     localStorage.getItem(
-        "portfolio-theme"
+        "portfolioTheme"
     );
 
 
 if(savedTheme === "light"){
 
-    document.body.classList.add(
-        "light"
-    );
+    document.body.classList.add("light");
 
-    themeToggle.textContent =
-        "☾";
+    themeBtn.textContent = "☾";
 
 }else{
 
-    themeToggle.textContent =
-        "☀";
+    themeBtn.textContent = "☀";
 
 }
 
 
-themeToggle.addEventListener(
+themeBtn.addEventListener(
     "click",
     () => {
 
@@ -2538,27 +2105,27 @@ themeToggle.addEventListener(
         );
 
 
-        if(
+        const isLight =
             document.body.classList.contains(
                 "light"
-            )
-        ){
+            );
 
-            themeToggle.textContent =
-                "☾";
+
+        if(isLight){
+
+            themeBtn.textContent = "☾";
 
             localStorage.setItem(
-                "portfolio-theme",
+                "portfolioTheme",
                 "light"
             );
 
         }else{
 
-            themeToggle.textContent =
-                "☀";
+            themeBtn.textContent = "☀";
 
             localStorage.setItem(
-                "portfolio-theme",
+                "portfolioTheme",
                 "dark"
             );
 
@@ -2568,22 +2135,18 @@ themeToggle.addEventListener(
 );
 
 
-
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
+/* =========================
+   SCROLL ANIMATION
+========================= */
 
 const observer =
     new IntersectionObserver(
-
         entries => {
 
             entries.forEach(
                 entry => {
 
-                    if(
-                        entry.isIntersecting
-                    ){
+                    if(entry.isIntersecting){
 
                         entry.target.classList.add(
                             "show"
@@ -2599,260 +2162,100 @@ const observer =
             );
 
         },
-
         {
             threshold:.12
         }
-
     );
 
 
 document
-    .querySelectorAll(".reveal")
-    .forEach(
-        element => {
+.querySelectorAll(".reveal")
+.forEach(element => {
 
-            observer.observe(
-                element
-            );
+    observer.observe(element);
 
-        }
-    );
+});
 
 
-
-/* =====================================================
+/* =========================
    PARTICLES
-===================================================== */
+========================= */
 
-const finePointer =
+for(
+    let i = 0;
+    i < 45;
+    i++
+){
+
+    const p =
+        document.createElement("span");
+
+    p.className = "particle";
+
+    p.style.left =
+        Math.random() * 100 + "vw";
+
+    p.style.top =
+        Math.random() * 100 + "vh";
+
+    p.style.animationDelay =
+        Math.random() * 6 + "s";
+
+    p.style.animationDuration =
+        4 + Math.random() * 7 + "s";
+
+    document.body.appendChild(p);
+
+}
+
+
+/* =========================
+   3D PHOTO TILT
+========================= */
+
+const photo =
+    document.getElementById("photo");
+
+
+if(
     window.matchMedia(
         "(pointer:fine)"
-    ).matches;
-
-
-const reducedMotion =
-    window.matchMedia(
-        "(prefers-reduced-motion:reduce)"
-    ).matches;
-
-
-if(
-    !reducedMotion
+    ).matches
 ){
 
-    for(
-        let i=0;
-        i<45;
-        i++
-    ){
-
-        const particle =
-            document.createElement(
-                "span"
-            );
-
-
-        particle.className =
-            "particle";
-
-
-        particle.style.left =
-            Math.random()*100 +
-            "vw";
-
-
-        particle.style.top =
-            Math.random()*100 +
-            "vh";
-
-
-        particle.style.animationDelay =
-            Math.random()*6 +
-            "s";
-
-
-        particle.style.animationDuration =
-            4 +
-            Math.random()*7 +
-            "s";
-
-
-        document.body.appendChild(
-            particle
-        );
-
-    }
-
-}
-
-
-
-/* =====================================================
-   3D TILT
-===================================================== */
-
-if(
-    finePointer &&
-    !reducedMotion
-){
-
-    document
-        .querySelectorAll(".tilt")
-        .forEach(
-            card => {
-
-
-                card.addEventListener(
-                    "pointermove",
-                    event => {
-
-
-                        const rect =
-                            card.getBoundingClientRect();
-
-
-                        const x =
-                            (
-                                event.clientX -
-                                rect.left
-                            )
-                            /
-                            rect.width
-                            -
-                            .5;
-
-
-                        const y =
-                            (
-                                event.clientY -
-                                rect.top
-                            )
-                            /
-                            rect.height
-                            -
-                            .5;
-
-
-                        card.style.transform =
-
-                            `
-                            perspective(900px)
-                            rotateX(${-y*6}deg)
-                            rotateY(${x*8}deg)
-                            translateY(-5px)
-                            `;
-
-                    }
-                );
-
-
-                card.addEventListener(
-                    "pointerleave",
-                    () => {
-
-                        card.style.transform =
-                            "";
-
-                    }
-                );
-
-
-            }
-        );
-
-
-
-    /* =================================================
-       PHOTO TILT
-    ================================================= */
-
-    const photo =
-        document.querySelector(
-            ".tilt-photo"
-        );
-
-
-    if(photo){
-
-        photo.addEventListener(
-            "pointermove",
-            event => {
-
-
-                const rect =
-                    photo.getBoundingClientRect();
-
-
-                const x =
-                    (
-                        event.clientX -
-                        rect.left
-                    )
-                    /
-                    rect.width
-                    -
-                    .5;
-
-
-                const y =
-                    (
-                        event.clientY -
-                        rect.top
-                    )
-                    /
-                    rect.height
-                    -
-                    .5;
-
-
-                photo.style.transform =
-
-                    `
-                    perspective(1200px)
-                    rotateX(${-y*10}deg)
-                    rotateY(${x*14}deg)
-                    translateZ(25px)
-                    `;
-
-            }
-        );
-
-
-        photo.addEventListener(
-            "pointerleave",
-            () => {
-
-                photo.style.transform =
-                    "";
-
-            }
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   PHOTO CHECK
-===================================================== */
-
-const profilePhoto =
-    document.querySelector(
-        ".photo"
+    photo.addEventListener(
+        "pointermove",
+        function(e){
+
+            const rect =
+                photo.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left)
+                / rect.width - .5;
+
+            const y =
+                (e.clientY - rect.top)
+                / rect.height - .5;
+
+
+            photo.style.transform =
+                `
+                perspective(1200px)
+                rotateX(${-y * 10}deg)
+                rotateY(${x * 14}deg)
+                translateZ(25px)
+                `;
+
+        }
     );
 
 
-if(profilePhoto){
+    photo.addEventListener(
+        "pointerleave",
+        function(){
 
-    profilePhoto.addEventListener(
-        "error",
-        () => {
-
-            console.log(
-                "ERROR: tanveer.jpg not found."
-            );
+            photo.style.transform = "";
 
         }
     );
@@ -2860,8 +2263,54 @@ if(profilePhoto){
 }
 
 
-</script>
+/* =========================
+   CARD 3D TILT
+========================= */
 
+document
+.querySelectorAll(".card, .feature")
+.forEach(card => {
+
+    card.addEventListener(
+        "pointermove",
+        function(e){
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left)
+                / rect.width - .5;
+
+            const y =
+                (e.clientY - rect.top)
+                / rect.height - .5;
+
+
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${-y * 5}deg)
+                rotateY(${x * 7}deg)
+                translateY(-4px)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointerleave",
+        function(){
+
+            card.style.transform = "";
+
+        }
+    );
+
+});
+
+</script>
 
 </body>
 </html>
