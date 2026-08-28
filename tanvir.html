@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tanveer ul Haq Malik | Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   DARK NEON THEME
+========================= */
+
+:root{
+    --bg:#02030a;
+    --bg2:#070a18;
+    --card:rgba(9,13,31,.75);
+
+    --text:#f5f7ff;
+    --muted:#9299b5;
+
+    --cyan:#00f5ff;
+    --purple:#8b5cf6;
+    --pink:#ff2bd6;
+
+    --border:rgba(0,245,255,.22);
+}
+
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+body.light{
+    --bg:#f4f8ff;
+    --bg2:#ffffff;
+    --card:rgba(255,255,255,.82);
+
+    --text:#101425;
+    --muted:#596176;
+
+    --border:rgba(0,160,190,.25);
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
+    transition:
+        background .4s ease,
+        color .4s ease;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(0,245,255,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(139,92,246,.13),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255,43,214,.10),
+            transparent 25%
+        );
+
+    pointer-events:none;
+}
+
+body.light::before{
+    opacity:.65;
+}
+
+
+/* =========================
+   GRID BACKGROUND
+========================= */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+
+    background-image:
+        linear-gradient(
+            rgba(0,245,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(139,92,246,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:55px 55px;
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   SCAN LINE
+========================= */
+
+.scanline{
+    position:fixed;
+    top:-10%;
+    left:0;
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--pink),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 30px var(--pink);
+
+    opacity:.25;
+
+    z-index:999;
+
+    pointer-events:none;
+
+    animation:scan 7s linear infinite;
+}
+
+@keyframes scan{
+
+    from{
+        top:-10%;
+    }
+
+    to{
+        top:110%;
+    }
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:min(
+        1160px,
+        calc(100% - 36px)
+    );
+
+    margin:auto;
+}
+
+section{
+    padding:105px 0;
+
+    border-top:
+        1px solid
+        rgba(0,245,255,.08);
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.nav{
+    position:fixed;
+
+    top:16px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(
+        1120px,
+        calc(100% - 28px)
+    );
+
+    z-index:100;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:12px 15px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    background:
+        rgba(2,3,10,.72);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 0 20px
+        rgba(0,245,255,.08);
+}
+
+body.light .nav{
+    background:
+        rgba(255,255,255,.78);
+}
+
+
+.logo{
+    font-family:Orbitron,sans-serif;
+
+    font-size:22px;
+    font-weight:800;
+
+    color:var(--cyan);
+
+    text-shadow:
+        0 0 8px var(--cyan),
+        0 0 25px rgba(0,245,255,.45);
+}
+
+
+.nav-links{
+    display:flex;
+    gap:4px;
+}
+
+.nav-links a{
+    color:var(--muted);
+
+    text-decoration:none;
+
+    font-size:10px;
+    font-weight:600;
+
+    padding:9px;
+
+    border-radius:8px;
+
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:var(--cyan);
+
+    background:
+        rgba(0,245,255,.07);
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-btn{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        var(--cyan);
+
+    background:
+        rgba(0,245,255,.07);
+
+    color:var(--cyan);
+
+    cursor:pointer;
+
+    font-size:19px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.35s;
+
+    box-shadow:
+        0 0 10px
+        rgba(0,245,255,.22);
+}
+
+.theme-btn:hover{
+    transform:
+        rotate(180deg)
+        scale(1.08);
+
+    box-shadow:
+        0 0 12px var(--cyan),
+        0 0 30px rgba(0,245,255,.35);
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.menu-btn{
+    display:none;
+
+    background:none;
+    border:0;
+
+    color:var(--cyan);
+
+    font-size:24px;
+
+    cursor:pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    padding:
+        140px 0
+        70px;
+}
+
+.hero-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.05fr
+        .95fr;
+
+    gap:50px;
+
+    align-items:center;
+}
+
+
+.kicker{
+    color:var(--cyan);
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:.3em;
+
+    margin-bottom:22px;
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+h1{
+    font-family:Orbitron,sans-serif;
+
+    font-size:
+        clamp(
+            3rem,
+            6.5vw,
+            6rem
+        );
+
+    line-height:.94;
+
+    letter-spacing:-.06em;
+}
+
+h1 span{
+    display:block;
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        1px var(--cyan);
+
+    text-shadow:
+        0 0 15px
+        rgba(0,245,255,.25);
+}
+
+
+.tagline{
+    margin-top:25px;
+
+    font-size:
+        clamp(
+            1rem,
+            2vw,
+            1.3rem
+        );
+
+    font-weight:600;
+}
+
+.description{
+    max-width:650px;
+
+    margin-top:15px;
+
+    color:var(--muted);
+
+    line-height:1.85;
+}
+
+
+.buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:13px;
+
+    margin-top:30px;
+}
+
+
+.btn{
+    display:inline-block;
+
+    padding:14px 20px;
+
+    border:
+        1px solid
+        rgba(0,245,255,.35);
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    font-size:12px;
+    font-weight:700;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+
+    color:var(--cyan);
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 30px rgba(0,245,255,.2);
+}
+
+
+.btn.primary{
+    color:#001014;
+
+    background:var(--cyan);
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 30px rgba(0,245,255,.25);
+}
+
+.btn.primary:hover{
+    color:#001014;
+}
+
+
+/* =========================
+   3D PHOTO
+========================= */
+
+.visual{
+    height:570px;
+
+    display:grid;
+
+    place-items:center;
+
+    position:relative;
+
+    perspective:1300px;
+}
+
+
+.photo-wrap{
+    width:min(
+        375px,
+        80vw
+    );
+
+    aspect-ratio:4/5;
+
+    padding:7px;
+
+    position:relative;
+
+    z-index:5;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            var(--cyan)
+        );
+
+    background-size:300% 300%;
+
+    animation:
+        gradient 5s ease infinite;
+
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 45px rgba(0,245,255,.25),
+        0 0 80px rgba(139,92,246,.18);
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .12s ease;
+}
+
+@keyframes gradient{
+
+    0%{
+        background-position:0 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0 50%;
+    }
+
+}
+
+
+.photo-wrap::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-20px;
+
+    z-index:-1;
+
+    border-radius:40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    filter:blur(35px);
+
+    opacity:.28;
+}
+
+
+.photo{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:21px;
+
+    background:#080a13;
+}
+
+
+/* =========================
+   RINGS
+========================= */
+
+.ring{
+    position:absolute;
+
+    width:470px;
+    height:470px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(0,245,255,.28);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,245,255,.08);
+
+    transform:
+        rotateX(68deg)
+        rotateZ(20deg);
+
+    animation:
+        ring1
+        13s linear infinite;
+}
+
+.ring::before{
+    content:"";
+
+    position:absolute;
+
+    width:11px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px var(--cyan);
+
+    top:6%;
+    left:17%;
+}
+
+
+.ring.two{
+    width:390px;
+    height:390px;
+
+    border-color:
+        rgba(255,43,214,.25);
+
+    transform:
+        rotateX(68deg)
+        rotateZ(-20deg);
+
+    animation:
+        ring2
+        10s linear infinite;
+}
+
+.ring.two::before{
+    background:var(--pink);
+
+    box-shadow:
+        0 0 10px var(--pink),
+        0 0 25px var(--pink);
+
+    top:auto;
+    bottom:10%;
+    left:auto;
+    right:10%;
+}
+
+
+@keyframes ring1{
+
+    to{
+        transform:
+            rotateX(68deg)
+            rotateZ(380deg);
+    }
+
+}
+
+@keyframes ring2{
+
+    to{
+        transform:
+            rotateX(68deg)
+            rotateZ(-380deg);
+    }
+
+}
+
+
+/* =========================
+   FLOATING CUBES
+========================= */
+
+.cube{
+    position:absolute;
+
+    width:20px;
+    height:20px;
+
+    border:
+        1px solid
+        var(--cyan);
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    transform:rotate(45deg);
+
+    animation:
+        floating
+        5s ease-in-out infinite;
+}
+
+.cube.one{
+    top:10%;
+    right:3%;
+}
+
+.cube.two{
+    bottom:15%;
+    left:2%;
+
+    border-color:var(--pink);
+
+    box-shadow:
+        0 0 15px var(--pink);
+
+    animation-delay:-2s;
+}
+
+.cube.three{
+    top:30%;
+    left:5%;
+
+    border-color:var(--purple);
+
+    box-shadow:
+        0 0 15px var(--purple);
+
+    animation-delay:-3s;
+}
+
+@keyframes floating{
+
+    50%{
+        transform:
+            translateY(-25px)
+            rotate(180deg);
+    }
+
+}
+
+
+/* =========================
+   SECTION HEAD
+========================= */
+
+.section-head{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:40px;
+}
+
+
+.section-line{
+    width:45px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+h2{
+    font-family:Orbitron,sans-serif;
+
+    font-size:
+        clamp(
+            1.9rem,
+            4vw,
+            3.2rem
+        );
+
+    letter-spacing:-.04em;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:55px;
+}
+
+
+.quote{
+    font-family:Orbitron,sans-serif;
+
+    font-size:
+        clamp(
+            1.5rem,
+            3vw,
+            2.5rem
+        );
+
+    line-height:1.3;
+
+    color:var(--cyan);
+
+    text-shadow:
+        0 0 12px
+        rgba(0,245,255,.2);
+}
+
+
+.muted{
+    color:var(--muted);
+
+    line-height:1.85;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:20px;
+}
+
+
+.card{
+    padding:30px;
+
+    min-height:190px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(0,245,255,.16);
+
+    border-radius:20px;
+
+    background:var(--card);
+
+    backdrop-filter:blur(16px);
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .15s ease,
+        .3s;
+}
+
+.card:hover{
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 18px
+        rgba(0,245,255,.16);
+}
+
+
+.card::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan);
+}
+
+
+.card h3{
+    font-family:Orbitron,sans-serif;
+
+    font-size:19px;
+
+    margin:
+        10px 0;
+}
+
+
+.card p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   FEATURE
+========================= */
+
+.feature{
+    padding:45px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.35);
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,245,255,.045),
+            rgba(139,92,246,.08),
+            rgba(255,43,214,.045)
+        );
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .15s ease;
+}
+
+.feature:hover{
+    border-color:var(--purple);
+
+    box-shadow:
+        0 0 30px
+        rgba(139,92,246,.12);
+}
+
+
+.feature-label{
+    color:var(--cyan);
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:.2em;
+}
+
+
+.feature h3{
+    font-family:Orbitron,sans-serif;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+
+    margin:
+        10px 0 15px;
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline{
+    max-width:900px;
+
+    margin:auto;
+
+    position:relative;
+}
+
+.timeline::before{
+    content:"";
+
+    position:absolute;
+
+    left:8px;
+    top:0;
+    bottom:0;
+
+    width:1px;
+
+    background:
+        linear-gradient(
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+.timeline-item{
+    position:relative;
+
+    padding:
+        0 0 45px
+        45px;
+}
+
+
+.timeline-dot{
+    position:absolute;
+
+    left:0;
+    top:2px;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    background:var(--bg);
+
+    border:
+        2px solid
+        var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px rgba(0,245,255,.4);
+}
+
+
+.timeline-item h3{
+    font-family:Orbitron,sans-serif;
+
+    font-size:20px;
+
+    margin-bottom:7px;
+}
+
+
+.timeline-item p{
+    color:var(--muted);
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:15px;
+}
+
+
+.contact{
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+
+    padding:22px;
+
+    border:
+        1px solid
+        rgba(0,245,255,.15);
+
+    border-radius:17px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+
+.contact:hover{
+    transform:translateY(-5px);
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 15px
+        rgba(0,245,255,.15);
+}
+
+
+.contact-icon{
+    color:var(--cyan);
+
+    font-size:23px;
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+.contact small{
+    display:block;
+
+    color:var(--cyan);
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:.14em;
+
+    margin-bottom:4px;
+}
+
+
+.contact strong{
+    font-size:13px;
+
+    word-break:break-word;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:45px 0;
+
+    border-top:
+        1px solid
+        rgba(0,245,255,.1);
+
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+.footer{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+
+    transform:none;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle{
+    position:fixed;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 8px var(--cyan);
+
+    opacity:.45;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    animation:
+        particle
+        6s ease-in-out
+        infinite alternate;
+}
+
+@keyframes particle{
+
+    to{
+        transform:
+            translate(
+                30px,
+                -50px
+            );
+
+        opacity:.1;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .nav.open .nav-links{
+
+        display:flex;
+
+        position:absolute;
+
+        top:67px;
+
+        left:0;
+        right:0;
+
+        flex-direction:column;
+
+        padding:10px;
+
+        background:
+            rgba(2,3,10,.95);
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:15px;
+
+        backdrop-filter:blur(20px);
+    }
+
+    body.light .nav.open .nav-links{
+        background:
+            rgba(255,255,255,.96);
+    }
+
+    .nav.open .nav-links a{
+        width:100%;
+        text-align:center;
+        padding:12px;
+    }
+
+    .hero{
+        padding-top:125px;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .visual{
+        order:-1;
+        height:460px;
+    }
+
+    .ring{
+        width:350px;
+        height:350px;
+    }
+
+    .ring.two{
+        width:290px;
+        height:290px;
+    }
+
+    .photo-wrap{
+        width:300px;
+    }
+
+    .about-grid,
+    .cards,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .feature{
+        padding:30px 24px;
+    }
+
+    .footer{
+        flex-direction:column;
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    h1{
+        font-size:3rem;
+    }
+
+    .visual{
+        height:410px;
+    }
+
+    .ring{
+        width:290px;
+        height:290px;
+    }
+
+    .ring.two{
+        width:240px;
+        height:240px;
+    }
+
+    .photo-wrap{
+        width:260px;
+    }
+
+    section{
+        padding:80px 0;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none!important;
+        transition:none!important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="scanline"></div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="nav" id="nav">
+
+    <a href="#home" class="logo">
+        TANVEER UL HAQ MALIK.
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#business">BUSINESS</a>
+        <a href="#contact">CONTACT</a>
+
+    </div>
+
+
+    <!-- LIGHT / DARK -->
+
+    <button
+        class="theme-btn"
+        id="themeBtn"
+        title="Light / Dark Mode"
+    >
+        ☀
+    </button>
+
+
+    <button
+        class="menu-btn"
+        id="menuBtn"
+    >
+        ☰
+    </button>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+
+    <div class="reveal">
+
+        <div class="kicker">
+            DIGITAL PORTFOLIO
+        </div>
+
+
+        <h1>
+            Tanveer
+
+            <span>
+                ul Haq Malik
+            </span>
+        </h1>
+
+
+        <div class="tagline">
+
+            BBA-H Student
+            ·
+            Entrepreneur
+            ·
+            Founder
+
+        </div>
+
+
+        <p class="description">
+
+            BBA-H student at Iqra University with
+            professional experience at FBR,
+            CIT certification, and entrepreneurial
+            experience as Founder of Saeed Law Associates.
+
+        </p>
+
+
+        <div class="buttons">
+
+            <a
+                href="#about"
+                class="btn primary"
+            >
+                EXPLORE PORTFOLIO →
+            </a>
+
+            <a
+                href="#contact"
+                class="btn"
+            >
+                CONTACT ME
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PHOTO -->
+
+    <div class="visual reveal">
+
+
+        <div class="ring"></div>
+
+        <div class="ring two"></div>
+
+
+        <div class="cube one"></div>
+
+        <div class="cube two"></div>
+
+        <div class="cube three"></div>
+
+
+        <div class="photo-wrap" id="photo">
+
+            <img
+                src="tanvir-img.jpeg.jpeg"
+                alt="Tanveer ul Haq Malik"
+                class="photo"
+            >
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            ABOUT ME
+        </h2>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+        <div class="quote reveal">
+
+            BUILDING A FUTURE
+            THROUGH EDUCATION,
+            EXPERIENCE &
+            ENTREPRENEURSHIP.
+
+        </div>
+
+
+        <div class="muted reveal">
+
+            <p>
+
+                I am Tanveer ul Haq Malik,
+                currently pursuing BBA-H
+                at Iqra University.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                I completed my Matriculation
+                from Bahria Foundation and
+                Intermediate from Bahria College
+                Karsaz.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                I also completed a complete
+                CIT course from Delhi School.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                I have one year of professional
+                experience at FBR and I am also
+                the Founder of Saeed Law Associates.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     EDUCATION
+========================= -->
+
+<section id="education">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            EDUCATION
+        </h2>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card reveal">
+
+            <h3>
+                Matriculation
+            </h3>
+
+            <p>
+                Bahria Foundation
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <h3>
+                Intermediate
+            </h3>
+
+            <p>
+                Bahria College Karsaz
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <h3>
+                CIT
+            </h3>
+
+            <p>
+                Complete Certificate in
+                Information Technology
+                from Delhi School.
+            </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <h3>
+                BBA-H
+            </h3>
+
+            <p>
+                Iqra University
+                <br>
+                Currently Pursuing
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     EXPERIENCE
+========================= -->
+
+<section id="experience">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            EXPERIENCE
+        </h2>
+
+    </div>
+
+
+    <div class="feature reveal">
+
+        <div class="feature-label">
+            PROFESSIONAL EXPERIENCE
+        </div>
+
+        <h3>
+            FBR
+        </h3>
+
+        <p class="muted">
+
+            One year of professional experience
+            at the Federal Board of Revenue.
+
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     BUSINESS
+========================= -->
+
+<section id="business">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            BUSINESS
+        </h2>
+
+    </div>
+
+
+    <div class="feature reveal">
+
+        <div class="feature-label">
+            FOUNDER
+        </div>
+
+        <h3>
+            Saeed Law Associates
+        </h3>
+
+        <p class="muted">
+
+            Founder of Saeed Law Associates,
+            combining professional experience,
+            business education and entrepreneurship.
+
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div class="section-line"></div>
+
+        <h2>
+            CONTACT
+        </h2>
+
+    </div>
+
+
+    <p class="muted reveal">
+
+        Feel free to connect with me for
+        professional opportunities,
+        collaboration and business inquiries.
+
+    </p>
+
+
+    <br><br>
+
+
+    <div class="contact-grid">
+
+
+        <!-- PHONE -->
+
+        <a
+            href="tel:+923202594657"
+            class="contact reveal"
+        >
+
+            <span class="contact-icon">
+                ☎
+            </span>
+
+            <span>
+
+                <small>
+                    PERSONAL PHONE
+                </small>
+
+                <strong>
+                    0320-2594657
+                </strong>
+
+            </span>
+
+        </a>
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://wa.me/923122327893"
+            target="_blank"
+            class="contact reveal"
+        >
+
+            <span class="contact-icon">
+                ◉
+            </span>
+
+            <span>
+
+                <small>
+                    WHATSAPP BUSINESS
+                </small>
+
+                <strong>
+                    0312-2327893
+                </strong>
+
+            </span>
+
+        </a>
+
+
+        <!-- EMAIL -->
+
+        <a
+            href="mailto:tanveer.65721@iqra.edu.pk"
+            class="contact reveal"
+        >
+
+            <span class="contact-icon">
+                ✉
+            </span>
+
+            <span>
+
+                <small>
+                    EMAIL
+                </small>
+
+                <strong>
+                    tanveer.65721@iqra.edu.pk
+                </strong>
+
+            </span>
+
+        </a>
+
+
+        <!-- LOCATION -->
+
+        <div class="contact reveal">
+
+            <span class="contact-icon">
+                ⌖
+            </span>
+
+            <span>
+
+                <small>
+                    LOCATION
+                </small>
+
+                <strong>
+                    Karachi, Pakistan
+                </strong>
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer">
+
+    <div>
+
+        <strong>
+            Tanveer ul Haq Malik
+        </strong>
+
+        <br><br>
+
+        BBA-H Student · Entrepreneur ·
+        Founder of Saeed Law Associates
+
+    </div>
+
+
+    <div>
+
+        © 2026 Tanveer ul Haq Malik
+
+    </div>
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const nav =
+    document.getElementById("nav");
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+
+menuBtn.addEventListener(
+    "click",
+    () => {
+
+        nav.classList.toggle("open");
+
+    }
+);
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            nav.classList.remove("open");
+
+        }
+    );
+
+});
+
+
+/* =========================
+   LIGHT / DARK MODE
+========================= */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+
+const savedTheme =
+    localStorage.getItem(
+        "portfolioTheme"
+    );
+
+
+if(savedTheme === "light"){
+
+    document.body.classList.add("light");
+
+    themeBtn.textContent = "☾";
+
+}else{
+
+    themeBtn.textContent = "☀";
+
+}
+
+
+themeBtn.addEventListener(
+    "click",
+    () => {
+
+        document.body.classList.toggle(
+            "light"
+        );
+
+
+        const isLight =
+            document.body.classList.contains(
+                "light"
+            );
+
+
+        if(isLight){
+
+            themeBtn.textContent = "☾";
+
+            localStorage.setItem(
+                "portfolioTheme",
+                "light"
+            );
+
+        }else{
+
+            themeBtn.textContent = "☀";
+
+            localStorage.setItem(
+                "portfolioTheme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(entry.isIntersecting){
+
+                        entry.target.classList.add(
+                            "show"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element => {
+
+    observer.observe(element);
+
+});
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+for(
+    let i = 0;
+    i < 45;
+    i++
+){
+
+    const p =
+        document.createElement("span");
+
+    p.className = "particle";
+
+    p.style.left =
+        Math.random() * 100 + "vw";
+
+    p.style.top =
+        Math.random() * 100 + "vh";
+
+    p.style.animationDelay =
+        Math.random() * 6 + "s";
+
+    p.style.animationDuration =
+        4 + Math.random() * 7 + "s";
+
+    document.body.appendChild(p);
+
+}
+
+
+/* =========================
+   3D PHOTO TILT
+========================= */
+
+const photo =
+    document.getElementById("photo");
+
+
+if(
+    window.matchMedia(
+        "(pointer:fine)"
+    ).matches
+){
+
+    photo.addEventListener(
+        "pointermove",
+        function(e){
+
+            const rect =
+                photo.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left)
+                / rect.width - .5;
+
+            const y =
+                (e.clientY - rect.top)
+                / rect.height - .5;
+
+
+            photo.style.transform =
+                `
+                perspective(1200px)
+                rotateX(${-y * 10}deg)
+                rotateY(${x * 14}deg)
+                translateZ(25px)
+                `;
+
+        }
+    );
+
+
+    photo.addEventListener(
+        "pointerleave",
+        function(){
+
+            photo.style.transform = "";
+
+        }
+    );
+
+}
+
+
+/* =========================
+   CARD 3D TILT
+========================= */
+
+document
+.querySelectorAll(".card, .feature")
+.forEach(card => {
+
+    card.addEventListener(
+        "pointermove",
+        function(e){
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left)
+                / rect.width - .5;
+
+            const y =
+                (e.clientY - rect.top)
+                / rect.height - .5;
+
+
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${-y * 5}deg)
+                rotateY(${x * 7}deg)
+                translateY(-4px)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointerleave",
+        function(){
+
+            card.style.transform = "";
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
